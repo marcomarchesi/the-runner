@@ -161,8 +161,9 @@ function sendData(){
 
       var length = Math.sqrt(acc_x * acc_x+ acc_y  * acc_y  +acc_z  * acc_z );
       if(length>=1.85){
-         // stepCount++;
-      }
+         stepCount = 1;
+      }else
+        stepCount = 0;
 
       
 
@@ -191,11 +192,11 @@ function sendData(){
       yaw = yaw + (degreesToRadians(gyr_z) * SAMPLE_TIME) + yaw_compensation;
       // yaw = 0;
 
-      if(sign(yaw_old) != sign(yaw))
-        stepCount = 1;
-      else
-        stepCount = 0;
-      // console.log(yaw);
+      // if(sign(yaw_old) != sign(yaw))
+      //   stepCount = 1;
+      // else
+      //   stepCount = 0;
+      console.log(yaw);
 
 
       

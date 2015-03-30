@@ -87,8 +87,7 @@
       var isRaining = false;
       var rain;
 
-      var running;
-      var normalStep = 2, runningStep = 4;
+      var WALKING_SPEED = 2;
       var step = 0;
 
       var cube;
@@ -220,17 +219,17 @@
 
       HUD = new HUD(HUDscene, HUDisVisible, oculusEnabled);
 
-      // add a random cube to the scene
-      var cubeGeometry = new THREE.CubeGeometry(1, 1, 1);
-      var cubeMaterial = new THREE.MeshLambertMaterial({
-         color: "red"
-         });
-      cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-      cube.castShadow = true;
-      cube.position.z = -5;
-      cube.position.y = 1;
-      cube.position.x = 3;
-      scene.add(cube);
+      // // add a random cube to the scene
+      // var cubeGeometry = new THREE.CubeGeometry(1, 1, 1);
+      // var cubeMaterial = new THREE.MeshLambertMaterial({
+      //    color: "red"
+      //    });
+      // cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+      // cube.castShadow = true;
+      // cube.position.z = -5;
+      // cube.position.y = 1;
+      // cube.position.x = 3;
+      // scene.add(cube);
 
       // add particle system for raining to the scene
       rain = new ParticleEngine();
@@ -301,7 +300,7 @@
     
     function render(dt) {
 
-      step = 3 * stepCount;
+      step = WALKING_SPEED * stepCount;
       path.takeStep(steps, steps+2, 400, oculusEnabled);
         steps += step;
 
