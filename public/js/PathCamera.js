@@ -65,15 +65,13 @@ function PathCamera(camera, curve) {
         pathQuaternion.setFromRotationMatrix(this.pathCamera.matrix,this.pathCamera.rotation.order );
         
         if(controls){
-          console.log(controls.headQuat);
+          // console.log(controls.headQuat);
           var finalQuaternion = new THREE.Quaternion();
           finalQuaternion.multiplyQuaternions(pathQuaternion,controls.headQuat);
           this.pathCamera.setRotationFromQuaternion(finalQuaternion);
         }else{
           this.pathCamera.setRotationFromQuaternion(pathQuaternion);
-        }
-
-          
+        }  
         // this.pathCamera.rotation.setFromRotationMatrix( this.pathCamera.matrix, this.pathCamera.rotation.order );
       // // }
 

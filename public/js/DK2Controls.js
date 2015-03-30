@@ -88,13 +88,13 @@ THREE.DK2Controls = function(object) {
             this.wasd.left = true;
             break;
 
-        case 82: /*R*/
-            this.moveUp = true; 
-            break;
+        // case 82: /*R*/
+        //     this.moveUp = true; 
+        //     break;
 
-        case 70: /*F*/
-            this.moveDown = true;
-            break;
+        // case 70: /*F*/
+        //     this.moveDown = true;
+        //     break;
       }
 
     }
@@ -122,13 +122,13 @@ THREE.DK2Controls = function(object) {
           this.wasd.left = false;
           break;
 
-      case 82: /*R*/
-          this.moveUp = false; 
-          break;
+      // case 82: /*R*/
+      //     this.moveUp = false; 
+      //     break;
 
-      case 70: /*F*/
-          this.moveDown = false;
-          break;
+      // case 70: /*F*/
+      //     this.moveDown = false;
+      //     break;
     }
   };
 
