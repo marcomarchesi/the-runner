@@ -1,4 +1,4 @@
-/* threejs-boilerplate-plus
+/* THE RUNNER
 */
 
 var express = require('express');
