@@ -16,9 +16,9 @@ Copyright 2014 Lars Ivar Hatledal
    @modified by Pierfrancesco Soffritti
 */
 
-THREE.DK2Controls = function(camera) {
+THREE.DK2Controls = function(object) {
 
-  this.camera = camera;
+  this.object = object;
   this.ws;
   this.sensorData;
   this.lastId = -1;
@@ -140,9 +140,16 @@ THREE.DK2Controls = function(camera) {
       if (id > this.lastId) {
         this.headPos.set(this.sensorData[1]*10, this.sensorData[2]*10, this.sensorData[3]*10);
         this.headQuat.set(this.sensorData[4], this.sensorData[5], this.sensorData[6], this.sensorData[7]);
+
+
+        // var pathQuaternion = new THREE.Quaternion();
+        // pathQuaternion.setFromRotationMatrix(this.object.matrix,this.object.rotation.order );
+        // // this.object.rotation.setFromRotationMatrix( this.object.matrix, this.object.rotation.order );
+        // var finalQuaternion = new THREE.Quaternion();
+        // finalQuaternion.multiplyQuaternions(pathQuaternion,this.headQuat);
           
-        this.camera.setRotationFromQuaternion(this.headQuat);
-        this.controller.setRotationFromMatrix(this.camera.matrix);        
+        // this.object.setRotationFromQuaternion(finalQuaternion);
+        this.controller.setRotationFromMatrix(this.object.matrix);         
       }
 
       this.lastId = id;
@@ -167,12 +174,12 @@ THREE.DK2Controls = function(camera) {
       this.controller.translateY( - this.translationSpeed * delta );
     
     // update the position of the camera ONLY if pathEnabled == false. Otherwise the camare will follow the path.
-    if(!pathEnabled) {
-      this.camera.position.addVectors(this.controller.position, this.headPos);
-    }
+    // if(!pathEnabled) {
+      this.object.position.addVectors(this.controller.position, this.headPos);
+    // }
 
-    if (this.camera.position.y < -10) {
-        this.camera.position.y = -10;
+    if (this.object.position.y < -10) {
+        this.object.position.y = -10;
       }
 
       if (ws) {

@@ -17,6 +17,7 @@ function PathCamera(camera, curve) {
   this.lookAhead = false;
   this.scale = 1.0;
   this.offset = 0;
+  this.lookAt = new THREE.Vector3( 0, 0, 0 );
   this.parent = new THREE.Object3D();
   this.parent.position.y = 1;
   scene.add(this.parent);
@@ -52,16 +53,29 @@ function PathCamera(camera, curve) {
       // pathCamera.lookAt( lookAt );
 
       // Using arclength for stablization in look ahead.
-      var lookAt = this.path.parameters.path.getPointAt( ( t + 30 / this.path.parameters.path.getLength() ) % 1 ).multiplyScalar( this.scale );
+      this.lookAt = this.path.parameters.path.getPointAt( ( t + 30 / this.path.parameters.path.getLength() ) % 1 ).multiplyScalar( this.scale );
       // Camera Orientation 2 - up orientation via normal
       if (!this.lookAhead)
-        lookAt.copy( position ).add( direction );
+        this.lookAt.copy( position ).add( direction );
 
       // if oculusEnabled we don't have to do that beacuse the oculus controls (DK2Controls) will the the camere where to look at.
       // if(!oculusEnabled) {
-        this.pathCamera.matrix.lookAt(this.pathCamera.position, lookAt, this.normal);
-        this.pathCamera.rotation.setFromRotationMatrix( this.pathCamera.matrix, this.pathCamera.rotation.order );
-      // }
+        this.pathCamera.matrix.lookAt(this.pathCamera.position, this.lookAt, this.normal);
+        var pathQuaternion = new THREE.Quaternion();
+        pathQuaternion.setFromRotationMatrix(this.pathCamera.matrix,this.pathCamera.rotation.order );
+        
+        if(controls){
+          console.log(controls.headQuat);
+          var finalQuaternion = new THREE.Quaternion();
+          finalQuaternion.multiplyQuaternions(pathQuaternion,controls.headQuat);
+          this.pathCamera.setRotationFromQuaternion(finalQuaternion);
+        }else{
+          this.pathCamera.setRotationFromQuaternion(pathQuaternion);
+        }
+
+          
+        // this.pathCamera.rotation.setFromRotationMatrix( this.pathCamera.matrix, this.pathCamera.rotation.order );
+      // // }
 
     };
 

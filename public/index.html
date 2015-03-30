@@ -29,7 +29,6 @@
     <script type="text/javascript" src="js/tween.min.js"></script>
     <script type="text/javascript" src="js/ParticleEngine.js"></script>
     <script type="text/javascript" src="js/stats.min.js"></script>
-    <script type="text/javascript" src="js/FirstPersonControls.js"></script>
     <script type="text/javascript" src="js/JSONLoader.js"></script>
     <script type="text/javascript" src="js/OculusRiftEffect_HUD.js"></script>
     <script type="text/javascript" src="js/PathCamera.js"></script>
@@ -84,7 +83,7 @@
       var pathEnabled = true; // set to true for runner camera; can be changed at runtime pressing shift
 
       // is it raining?
-      var isRaining = false;
+      var isRaining = true;
       var rain;
 
       var WALKING_SPEED = 2;
@@ -246,14 +245,16 @@
       light.castShadow = true;
       scene.add(light);
 
-      var ambientLight = new THREE.AmbientLight( ambientLightColor );
-      scene.add(ambientLight );
-
-      // if is raining change light color
+            // if is raining change light color
       if(isRaining)
         ambientLightColor = RAIN_LIGHT;
       else
         ambientLightColor = SUN_LIGHT;
+
+      var ambientLight = new THREE.AmbientLight( ambientLightColor );
+      scene.add(ambientLight );
+
+
 
       // add fog
       scene.fog = new THREE.FogExp2( 0xFFFFFF, 0.1);
@@ -288,14 +289,8 @@
 
     function setControls() {
       // Oculus DK2 controls
-      if(oculusEnabled == true)
         controls = new THREE.DK2Controls(pathEnabled === true ? pathCamera : camera);
-      else {
-        controls = new THREE.FirstPersonControls( pathEnabled === true ? pathCamera : camera);
-        controls.movementSpeed = 2;
-        controls.lookSpeed = 0.02;
-        controls.lookVertical = true;  
-      }
+
     }
     
     function render(dt) {
@@ -306,11 +301,13 @@
 
       // updating the position and orientation of the camera
       if ( controls.moveForward ) {
+        step = WALKING_SPEED;
         path.takeStep(steps, steps+2, 400, oculusEnabled);
         steps += step;
       }
         
       if ( controls.moveBackward ) {
+        step = WALKING_SPEED;
         if(steps > 0) {
           path.takeStep(steps, steps-2, 400, oculusEnabled);
           steps -= step; 

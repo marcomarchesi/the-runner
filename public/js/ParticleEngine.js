@@ -13,7 +13,7 @@ function ParticleEngine(){
 
   this.geometry = new THREE.Geometry();
 
-  for ( i = 0; i < 300; i ++ ) {
+  for ( i = 0; i < 900; i ++ ) {
 
     var vertex = new THREE.Vector3();
     vertex.x = Math.random() * 20 - 10;
