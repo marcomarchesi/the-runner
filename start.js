@@ -2,10 +2,13 @@
 */
 
 var express = require('express');
+var glove = require('./Glove.js');
 var app = express();
 var port = 8080;
 
-app.use(express.static(__dirname + '/public')).listen(port);
+app.use(express.static(__dirname + '/public'));
+
+var io = require('socket.io').listen(app.listen(port));
 
 // app.listen(port);
 console.log("listening port " + port);

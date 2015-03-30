@@ -18,7 +18,10 @@
     "chalk": "^0.5.1",
     "express": "^4.11.1",
     "grunt-run": "^0.3.0",
-    "node-ovrsdk": "^0.3.22"
+    "node-ovrsdk": "^0.3.22",
+    "serialport": "^1.6.3",
+    "socket.io": "^1.3.5",
+    "underscore": "^1.8.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

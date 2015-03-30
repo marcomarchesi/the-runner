@@ -36,10 +36,15 @@
     <script type="text/javascript" src="js/DK2Controls.js"></script>
     <script type="text/javascript" src="js/dat.gui.min.js"></script>
     <script type="text/javascript" src="js/HUD.js"></script>
-
+    <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
 
       //Global variables.
+
+      var socket = io.connect('http://localhost:8001'); //receive data from glove.js
+      var roll,pitch,yaw;
+      var raw = {};
+      var stepCount = 0;
 
       // body components
       var container, content;
@@ -84,7 +89,7 @@
 
       var running;
       var normalStep = 2, runningStep = 4;
-      var step;
+      var step = 0;
 
       var cube;
       var isTweening = false;
@@ -266,6 +271,18 @@
       // add the output of the renderer to the html element
       content.appendChild(renderer.domElement);
 
+
+      // read data from socket
+
+      socket.on('data',function(data){
+        roll = data.roll;
+        pitch = data.pitch;
+        yaw = data.yaw;
+        raw = data.raw;
+        stepCount = data.stepCount;
+        console.log(stepCount);
+      });
+
       // call the render function, after the first render, interval is determined by requestAnimationFrame
       render(0.016);
     }
@@ -284,10 +301,9 @@
     
     function render(dt) {
 
-      if(!running)
-        step = normalStep;
-      else
-        step = runningStep;
+      step = 3 * stepCount;
+      path.takeStep(steps, steps+2, 400, oculusEnabled);
+        steps += step;
 
       // updating the position and orientation of the camera
       if ( controls.moveForward ) {
