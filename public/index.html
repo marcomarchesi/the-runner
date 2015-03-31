@@ -270,8 +270,18 @@
         pitch = data.pitch;
         yaw = data.yaw;
         raw = data.raw;
-        stepCount = data.stepCount;
-        console.log(stepCount);
+
+        /* tuning steps */
+        if(data.stepCount == 1){
+          if(stepCount<100)
+            stepCount ++;
+        }
+        else{
+          if(stepCount>0)
+            stepCount--;
+        }
+
+        // console.log(stepCount);
       });
 
       // call the render function, after the first render, interval is determined by requestAnimationFrame
@@ -286,7 +296,10 @@
     
     function render(dt) {
 
-      step = WALKING_SPEED * stepCount;
+      step = WALKING_SPEED * (stepCount /100) ; //TODO add contribution of sign
+
+
+      
       path.takeStep(steps, steps+2, 400, oculusEnabled);
         steps += step;
 
