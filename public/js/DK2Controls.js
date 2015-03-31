@@ -14,6 +14,7 @@ Copyright 2014 Lars Ivar Hatledal
    limitations under the License.
 
    @modified by Pierfrancesco Soffritti
+   @modified by Marco Marchesi
 */
 
 THREE.DK2Controls = function(object) {
@@ -140,15 +141,9 @@ THREE.DK2Controls = function(object) {
       if (id > this.lastId) {
         this.headPos.set(this.sensorData[1]*10, this.sensorData[2]*10, this.sensorData[3]*10);
         this.headQuat.set(this.sensorData[4], this.sensorData[5], this.sensorData[6], this.sensorData[7]);
+        
 
-
-        // var pathQuaternion = new THREE.Quaternion();
-        // pathQuaternion.setFromRotationMatrix(this.object.matrix,this.object.rotation.order );
-        // // this.object.rotation.setFromRotationMatrix( this.object.matrix, this.object.rotation.order );
-        // var finalQuaternion = new THREE.Quaternion();
-        // finalQuaternion.multiplyQuaternions(pathQuaternion,this.headQuat);
-          
-        // this.object.setRotationFromQuaternion(finalQuaternion);
+        /* at this time camera rotation matrix has been already modified in its update */  
         this.controller.setRotationFromMatrix(this.object.matrix);         
       }
 

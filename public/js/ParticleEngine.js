@@ -13,12 +13,12 @@ function ParticleEngine(){
 
   this.geometry = new THREE.Geometry();
 
-  for ( i = 0; i < 900; i ++ ) {
+  for ( i = 0; i < 3000; i ++ ) {
 
     var vertex = new THREE.Vector3();
-    vertex.x = Math.random() * 20 - 10;
-    vertex.y = Math.random() * 20 - 10;
-    vertex.z = Math.random() * 20 - 10;
+    vertex.x = Math.random() * 200 - 130;
+    vertex.y = Math.random() * 200 - 130;
+    vertex.z = Math.random() * 200 - 130;
 
     this.geometry.vertices.push( vertex );
 
@@ -27,26 +27,6 @@ function ParticleEngine(){
     this.color = 0xaaaaaa;
     this.size  = Math.random()*0.05;
     var img = THREE.ImageUtils.loadTexture('textures/rain.png');
-    
-
-    // var textureImage = new Image();
-    // textureImage.src = '/textures/rain.png';
-
-    //  var imgWidth = imgHeight = 32;
-    //  var mapCanvas = document.createElement( 'canvas' );
-    //  mapCanvas.width = mapCanvas.height = 32;
-
-    //  this.texture = new THREE.Texture( mapCanvas );
-
-    //  textureImage.onload = function() {
-
-    //      // document.body.appendChild( mapCanvas );
-    //      var ctx = mapCanvas.getContext( '2d' );
-    //      ctx.rotate( Math.PI / 2 );
-    //      ctx.drawImage( textureImage, 0, 0, imgWidth, imgHeight );
-
-    //      texture.needsUpdate = true;
-    // }
 
     this.material = new THREE.PointCloudMaterial( {fog:true,transparent:true,opacity:0.1,map: img} );
     this.particles = new THREE.PointCloud( this.geometry, this.material );

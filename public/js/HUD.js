@@ -7,6 +7,9 @@
 var pauseTextMaterial, HUDPauseMaterial;
 var pointerMesh, redPointerMesh, LapCounterMesh;
 
+var MAP_OFFSET_X = 600; //1000 = right
+var MAP_OFFSET_Y = -200; //-500 = up
+
 var HUDElementsArray;
 
 var gotStartingPoint = false, hasMoved = false;
@@ -16,27 +19,28 @@ function HUD(HUDScene, HUDisVisible, oculusEnabled) {
 
   this.HUDisVisible = HUDisVisible;
 
-  // lap counter texture
-  var textCanvas = document.createElement('canvas');
-  var context = textCanvas.getContext('2d');
-  context.font = "Bold 30px Arial";
-  context.fillStyle = "rgba(255, 255, 255, 1)";
-  context.fillText("LAP number: " +numLap, 0, 50);
+  // // lap counter texture
+  // var textCanvas = document.createElement('canvas');
+  // var context = textCanvas.getContext('2d');
+  // context.font = "Bold 30px Arial";
+  // context.fillStyle = "rgba(255, 255, 255, 1)";
+  // context.fillText("LAP number: " +numLap, 0, 50);
 
-  // canvas contents will be used for a texture
-  var textTexture = new THREE.Texture(textCanvas) 
-  textTexture.needsUpdate = true;
+  // // canvas contents will be used for a texture
+  // var textTexture = new THREE.Texture(textCanvas) 
+  // textTexture.needsUpdate = true;
 
   // load a sample texture
   //var texture = THREE.ImageUtils.loadTexture("textures/ui.png");
-  var HUDSampleMaterial = new THREE.MeshBasicMaterial({  map: textTexture });
-  HUDSampleMaterial.transparent = true
-  HUDSampleMaterial.opacity = 1;
-  LapCounterMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), HUDSampleMaterial);
-  LapCounterMesh.scale.set(window.innerWidth / 2, window.innerHeight / 2, 1);
-  LapCounterMesh.position.z = -0.01;
-  LapCounterMesh.position.x = 1000;
-  HUDscene.add(LapCounterMesh);
+  // var HUDSampleMaterial = new THREE.MeshBasicMaterial({  map: textTexture });
+  // HUDSampleMaterial.transparent = true
+  // HUDSampleMaterial.opacity = 1;
+  // LapCounterMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), HUDSampleMaterial);
+  // LapCounterMesh.scale.set(window.innerWidth / 2, window.innerHeight / 2, 1);
+  // LapCounterMesh.position.z = -0.01;
+  // LapCounterMesh.position.x = MAP_OFFSET_X + 100;
+  // LapCounterMesh.position.y = -400;
+  // HUDscene.add(LapCounterMesh);
 
   // load minimap texture
   var texturePath = THREE.ImageUtils.loadTexture("textures/map.png");
@@ -49,8 +53,8 @@ function HUD(HUDScene, HUDisVisible, oculusEnabled) {
   else
     hudMinimapMesh.scale.set(window.innerWidth / 3, window.innerHeight / 3, 1);
   hudMinimapMesh.position.z = -0.01;
-  hudMinimapMesh.position.x = 0;//1000;
-  hudMinimapMesh.position.y = 0;//500;
+  hudMinimapMesh.position.x = MAP_OFFSET_X;//1000;
+  hudMinimapMesh.position.y = MAP_OFFSET_Y;//500;
   HUDscene.add(hudMinimapMesh);
 
   this.minimap = hudMinimapMesh;
@@ -163,8 +167,8 @@ function updatePointerPosition(mapX, mapY, sceneX, sceneZ, pathCameraX, pathCame
       //console.log("camera: " +camera.position.x);
       //console.log("pointer: " +pointerMesh.position.x);
 
-      pointerMesh.position.x = mapX/3.6 + getPointerXPosition(mapX, sceneX, pathCameraX) *1.45;
-      pointerMesh.position.y = -mapY/12.6 + getPointerYPosition(mapY, sceneZ, pathCameraZ) *1.20;
+      pointerMesh.position.x = MAP_OFFSET_X + mapX/3.6 + getPointerXPosition(mapX, sceneX, pathCameraX) *1.45;
+      pointerMesh.position.y = MAP_OFFSET_Y -mapY/12.6 + getPointerYPosition(mapY, sceneZ, pathCameraZ) *1.20;
 
       pointerMesh.updateMatrix();
       pointerMesh.updateMatrixWorld();
