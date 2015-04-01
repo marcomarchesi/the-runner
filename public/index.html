@@ -83,7 +83,7 @@
       var pathEnabled = true; // set to true for runner camera; can be changed at runtime pressing shift
 
       // is it raining?
-      var isRaining = true;
+      var isRaining = false;
       var rain;
 
       var WALKING_SPEED = 2;
@@ -298,20 +298,18 @@
 
       step = WALKING_SPEED * (stepCount /100) ; //TODO add contribution of sign
 
-
-      
       path.takeStep(steps, steps+2, 400, oculusEnabled);
         steps += step;
 
       // updating the position and orientation of the camera
       if ( controls.moveForward ) {
-        step = WALKING_SPEED;
+        step = WALKING_SPEED/3;
         path.takeStep(steps, steps+2, 400, oculusEnabled);
         steps += step;
       }
         
       if ( controls.moveBackward ) {
-        step = WALKING_SPEED;
+        step = WALKING_SPEED/3;
         if(steps > 0) {
           path.takeStep(steps, steps-2, 400, oculusEnabled);
           steps -= step; 
@@ -366,6 +364,9 @@
     function loadScene() {
       loader.load("./models/scene2s.js",
       function(model, materials) {
+        materials.forEach(function(item){
+          item.shading = THREE.FlatShading;
+        });
         scene_mesh = new THREE.Mesh(model, new THREE.MeshFaceMaterial( materials ));
         scene_mesh.name = 'scene';
         //scene_mesh.rotation.y = Math.PI;

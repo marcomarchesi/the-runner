@@ -80,7 +80,7 @@ console.log("Hello Glove!");
 // var network = JSON.parse(fs.readFileSync('./trained_net.json','utf-8'));
 // net.fromJSON(network);
 
-var sp = new serialport(USB_PORT, {
+var sp = new serialport(BT_PORT, {
   baudrate: BAUD_RATE,
   rtscts: false,
   flowControl: false
