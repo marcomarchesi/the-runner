@@ -38,6 +38,7 @@ var SAMPLE_TIME = 0.03 // 30 milliseconds
 var pitch = roll = yaw = 0;
 
 var stepCount = 0;
+var WALKING_THRESHOLD = 1.75;
 
 /* not sure yet on COMPASS values */
 var COM_X_OFFSET = 27.5;
@@ -160,9 +161,9 @@ function sendData(){
       // console.log(chalk.yellow("com_x " + com_x + " com_y " + com_y + " com_z " + com_z));
 
       var length = Math.sqrt(acc_x * acc_x+ acc_y  * acc_y  +acc_z  * acc_z );
-      if(length>=1.85){
-         stepCount = 1;
-      }else
+      if(length>=WALKING_THRESHOLD)
+        stepCount = 1;
+      else
         stepCount = 0;
 
       
