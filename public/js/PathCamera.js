@@ -99,7 +99,7 @@ PathCamera.prototype.takeStep = function(start, end, time, oculusEnabled) {
                         self.update(pos.x, oculusEnabled);
                       } )
                       .onComplete(function() {
-                        // self.takeStep(end+1,end+2,40,oculusEnabled);
+    
                       })
                       .start();
         }
