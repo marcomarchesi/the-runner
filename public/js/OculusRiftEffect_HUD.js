@@ -180,7 +180,9 @@ THREE.OculusRiftEffect = function ( renderer, options ) {
 		// Clear
 		renderer.setClearColor(emptyColor);
 		renderer.clear();
-		renderer.setClearColor(cc);
+		// renderer.setClearColor(cc);
+		/* set sky color to light cyan */
+		renderer.setClearColor(0xDEFFFE);
 
 		// camera parameters
 		if (camera.matrixAutoUpdate) camera.updateMatrix();

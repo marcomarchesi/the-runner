@@ -81,8 +81,6 @@ function PathCamera(camera, curve) {
 
 PathCamera.prototype.takeStep = function(start, end, time, oculusEnabled) {
 
-        if(!pause) {
-
           var pos = {x:start};
           var target = {x:end};
 
@@ -102,5 +100,4 @@ PathCamera.prototype.takeStep = function(start, end, time, oculusEnabled) {
     
                       })
                       .start();
-        }
 };

@@ -207,23 +207,23 @@ function updatePointerPosition(mapX, mapY, sceneX, sceneZ, pathCameraX, pathCame
         // not exited the 'lap counter range' yet
         hasMoved = false;
 
-        // creating a texture to update the lap counter
-        var textCanvas = document.createElement('canvas');
-        var context = textCanvas.getContext('2d');
-        context.font = "Bold 30px Arial";
-        context.fillStyle = "rgba(255, 255, 255, 1)";
-        context.fillText("LAP number: " +numLap, 0, 50);
+        // // creating a texture to update the lap counter
+        // var textCanvas = document.createElement('canvas');
+        // var context = textCanvas.getContext('2d');
+        // context.font = "Bold 30px Arial";
+        // context.fillStyle = "rgba(255, 255, 255, 1)";
+        // context.fillText("LAP number: " +numLap, 0, 50);
 
-        // canvas contents will be used for a texture
-        var textTexture = new THREE.Texture(textCanvas) 
-        textTexture.needsUpdate = true;
+        // // canvas contents will be used for a texture
+        // var textTexture = new THREE.Texture(textCanvas) 
+        // textTexture.needsUpdate = true;
 
-        var HUDSampleMaterial = new THREE.MeshBasicMaterial({  map: textTexture });
-        HUDSampleMaterial.transparent = true
-        HUDSampleMaterial.opacity = LapCounterMesh.material.opacity;
+        // var HUDSampleMaterial = new THREE.MeshBasicMaterial({  map: textTexture });
+        // HUDSampleMaterial.transparent = true;
+        // HUDSampleMaterial.opacity = LapCounterMesh.material.opacity;
 
-        // update material
-        LapCounterMesh.material = HUDSampleMaterial;
+        // // update material
+        // LapCounterMesh.material = HUDSampleMaterial;
       }
 }
 
