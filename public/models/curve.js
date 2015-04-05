@@ -11,11 +11,10 @@ new THREE.Vector3(-65.45,2.63,36.71),
 new THREE.Vector3(-48.9,3.43,46.45),
 new THREE.Vector3(-32.34,2.75,56.2),
 new THREE.Vector3(-15.03,1.17,56.15),
-new THREE.Vector3(-4.31,0.73,51.5),
+new THREE.Vector3(-4.31,1.63,51.5),
 new THREE.Vector3(2.23,1.83,41.31),
 new THREE.Vector3(3.58,3.49,23.94),
 new THREE.Vector3(8.99,4.61,9.76),
 new THREE.Vector3(8.76,6.14,-5.28),
-new THREE.Vector3(10.41,7.81,-20.81),
-new THREE.Vector3(-1.27,5.29,-38.1),
+new THREE.Vector3(10.41,7.81,-20.81)
 ] );
