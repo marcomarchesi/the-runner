@@ -65,7 +65,7 @@ function HUD(HUDScene, HUDisVisible, oculusEnabled) {
   HUDRedPointerMaterial.transparent = true
   HUDRedPointerMaterial.opacity = 1;
   redPointerMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), HUDRedPointerMaterial);
-  redPointerMesh.scale.set(20, 20, 1);
+  redPointerMesh.scale.set(16, 5, 1);
   redPointerMesh.position.z = -0.01;
   HUDscene.add(redPointerMesh);
 

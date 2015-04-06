@@ -181,7 +181,7 @@
       // create cameras.
       // PathCamera will follow the defined path and be controlled by PathCamera.js
       // camera is the normal camera and  will be controlled by FirstPersonControls.js/DK2Controls.js
-      pathCamera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 30 );
+      pathCamera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
 
       path = new PathCamera(pathCamera, sampleClosedSpline);
       // update path camera position
@@ -318,7 +318,7 @@
 
         renderer.clear();
         renderer.render(scene, pathCamera);
-        renderer.render(HUDscene, HUDcamera);
+        // renderer.render(HUDscene, HUDcamera);
       }
 
       requestAnimationFrame( render ); 
