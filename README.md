@@ -1,17 +1,19 @@
 # THE RUNNER
-
+Running running running...
 
 
 Install
 -------
 
- 1) Run:
-  `java -jar JOculus.jar`
+ 1) `npm install`
 
  2) Run:
+  `java -jar JOculus.jar`
+
+ 3) Run:
   `grunt`
  
- 3) Open Google Chrome (preferred for Presentation Mode) at `localhost:8080`
+ 4) Open browser (Google Chrome best for Presentation Mode) at `localhost:8080`
 
 
 
