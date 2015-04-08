@@ -38,7 +38,7 @@ var SAMPLE_TIME = 0.03 // 30 milliseconds
 var pitch = roll = yaw = 0;
 
 var stepCount = 0;
-var WALKING_THRESHOLD = 1.75;
+var WALKING_THRESHOLD = 1.35;
 
 /* not sure yet on COMPASS values */
 var COM_X_OFFSET = 27.5;
